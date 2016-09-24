@@ -2,10 +2,11 @@ identidock:
   build: .
   ports:
     - "5000:5000"
+# for docker-machine
+# volumes:
+#   - ./app:/app
   environment:
     ENV: DEV
-  volumes:
-    - ./app:/app
   links:
     - dnmonster
     - redis
