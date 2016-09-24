@@ -1,0 +1,23 @@
+identidock:
+  build: .
+  ports:
+    - "5000:5000"
+# for docker-machine
+# volumes:
+#   - ./app:/app
+  environment:
+    ENV: PROD
+  links:
+    - dnmonster
+    - redis
+dnmonster:
+  image: amouat/dnmonster:1.0
+redis:
+  image: redis:3.0
+proxy:
+  #image: identiproxy:0.1
+  build: ../identiproxy/
+  links:
+    - identidock
+  ports:
+    - "80:80"
